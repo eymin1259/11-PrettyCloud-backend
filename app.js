@@ -6,15 +6,16 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var app = express();
-const {sequelize} = require('./models');
+const {sequelize} = require('./models/index');
 
-sequelize.sync({force: false})
-.then(() => {
-  console.log('DB 연결 성공');
-})
-.catch((error) => {
-  console.error(error)
-});
+// db connection
+// sequelize.sync({force: false})
+// .then(() => {
+//   console.log('DB 연결 성공');
+// })
+// .catch((error) => {
+//   console.error(error)
+// });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
