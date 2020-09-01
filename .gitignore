@@ -1,8 +1,0 @@
-# environment
-.env
-
-# database config
-/config 
-/config/config.json
-
-/node_modules
