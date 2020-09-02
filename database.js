@@ -1,18 +1,17 @@
-require("dotenv").config();
+const { Sequelize } = require('sequelize');
+const { DB_HOST, DB_NAME, DB_USER, DB_MYSQL_PASSWORD, DB_PORT } = process.env;
 
-const { Sequelize } = require("sequelize");
-
-const sequelize = new Sequelize(
-  "prettycloud",
-  "root",
-
-  process.env.MYSQL_PASSWORD,
-  {
-    host: "localhost",
-    port: 3306,
-    logging: true,
-    dialect: "mysql",
-  }
-);
+const sequelize = new Sequelize({
+  dialect: 'mysql',
+  dialectOption: {
+    timezone: 'Asia/Seoul',
+  },
+  logging: false,
+  host: DB_HOST,
+  database: DB_NAME,
+  username: DB_USER,
+  password: DB_MYSQL_PASSWORD,
+  port: DB_PORT
+});
 
 module.exports = sequelize;
