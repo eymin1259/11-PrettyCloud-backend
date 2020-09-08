@@ -1,8 +1,7 @@
+const usersRouter = require('./usersRouter');
 
 const router = function (app) {
-    app.use('/', ( req, res,next) => {
-        res.send('welcome node server');
-    });
+  app.use('/users', usersRouter);
 };
   
 module.exports = router;

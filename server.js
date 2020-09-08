@@ -9,12 +9,12 @@ const { sequelize } = require('./models');
     // db connection
     await sequelize.authenticate();
     await sequelize
-      .sync({ force: true, alter: true })
+      .sync({ force: false, alter: false })
       .then(() => console.log('DB SYNCED'));
 
     // server open
-    server.listen(process.env.DB_SERVER_PORT, () => {
-      console.log(`SERVER IS LISTENING TO PORT: ${process.env.DB_SERVER_PORT}`);
+    server.listen(process.env.SERVER_PORT, () => {
+      console.log(`SERVER IS LISTENING TO PORT: ${process.env.SERVER_PORT}`);
     });
   } catch (err) {
     console.log('DB CONNECTION ERROR');
