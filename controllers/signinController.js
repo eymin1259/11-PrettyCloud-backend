@@ -14,7 +14,7 @@ const getOneUser = async function(req, res, next) {
     }).then(queryData => dbUser = queryData[0]);
 
     if(!dbUser){
-      const error = new Error('NOT_EXIST_USER');
+      const error = new Error('LOGIN_FAIL');
       error.statusCode = 400;
       throw error;
     }
@@ -25,16 +25,15 @@ const getOneUser = async function(req, res, next) {
     const result = await bcrypt.compare(password, dbPw);
     
     if(!result){
-      const error = new Error('WRONG_PW');
+      const error = new Error('LOGIN_FAIL');
       error.statusCode = 400;
       throw error;
     }
 
     const token = jwt.sign({
-      dbId,
-      email
+      dbId
     }, process.env.JWT_SECRET, {
-      expiresIn: '1h',
+      expiresIn: '10s',
       issuer: 'host'
     })
 

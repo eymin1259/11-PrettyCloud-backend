@@ -12,8 +12,6 @@ const sequelizeModels = function ({ sequelize, models }) {
 const models = ['Amenities', 'Categories', 'ClassTypes', 'Images', 'PaymentTypes', 'Reply','Reservations', 'Reviews', 'SpaceAmenity', 'SpaceCategory','Spaces','Users','WishList'];
 const model = sequelizeModels({ sequelize, models });
 
-console.log(model);
-
 // 1: 1 association
 model.Reviews.hasOne(model.Reply);
 model.Reply.belongsTo(model.Reviews);

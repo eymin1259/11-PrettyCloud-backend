@@ -24,7 +24,7 @@ const postUsers = async function(req, res, next) {
 
     const hashPw = await bcrypt.hash(password, Number(process.env.BCRYPT_SECRET_KEY));
 
-    await sequelize.query(`INSERT INTO users VALUES(DEFAULT, "${email}", "${name}", "", "${hashPw}", "${profile_url ? profile_url : 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcToplStyx8pu0DsUkR-zSI6hAAN-vzcrZF0HA&usqp=CAU'}", current_timestamp, current_timestamp, current_timestamp)`, { 
+    await sequelize.query(`INSERT INTO users VALUES(DEFAULT, "${email}", "${name}", "", "${hashPw}", "${profile_url}", current_timestamp, current_timestamp, current_timestamp)`, { 
       type: QueryTypes.INSERT 
     });
 
