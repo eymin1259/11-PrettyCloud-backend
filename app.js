@@ -11,7 +11,6 @@ app.use(bodyparser.urlencoded({extended: false}));
 app.use(bodyparser.json());
 app.use(cors());
 app.use(logger);
-app.use('/users', verifyToken);
 
 router(app);
 

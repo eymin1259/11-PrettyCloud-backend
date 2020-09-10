@@ -12,16 +12,6 @@ const postUsers = async function(req, res, next) {
       throw error;
     }
 
-    // await sequelize.query(`SELECT * FROM users WHERE email="${email}"`, { 
-    //   type: QueryTypes.SELECT 
-    // }).then(queryData => {
-    //   if(queryData[0]){
-    //     const error = new Error('ALREADY_EXIST_EMAIL');
-    //     error.statusCode = 400;
-    //     throw error;
-    //   }
-    // });
-
     await Users.findOne({
       where: {
         email: email
@@ -42,7 +32,7 @@ const postUsers = async function(req, res, next) {
       phone: '',
       password: hashPw,
       profile_url: profile_url
-    })
+    });
 
     res.status(201).json({
       message: 'SUCCESS'
