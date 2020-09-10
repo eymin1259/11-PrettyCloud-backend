@@ -5,7 +5,7 @@ const router = express.Router();
 
 verifyToken = async (req, res, next) => {
   try{
-    req.decoded = await jwt.verify(req.headers.authorization, process.env.JWT_SECRET);console.log(req.decoded)
+    req.decoded = await jwt.verify(req.headers.authorization, process.env.JWT_SECRET);
     return req.decoded;
   } catch(err) {
     return res.status(401).json({
@@ -15,8 +15,4 @@ verifyToken = async (req, res, next) => {
   }
 }
 
-router.post('/test', verifyToken, (req, res) => {
-  res.json(req.decoded);
-})
-
-module.exports = router;
+module.exports = verifyToken;

@@ -10,7 +10,7 @@ module.exports = sequelize => {
         primaryKey: true
       },
       description: {
-        type: DataTypes.STRING(200),
+        type: DataTypes.STRING(2000),
         allowNull: false
       },
       rating: {

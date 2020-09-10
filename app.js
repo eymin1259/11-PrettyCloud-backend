@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const bodyparser = require('body-parser');
 const logger = require('morgan')('dev');
-const verifyToken = require('./middlewares/verifyToken');
 
 const router = require('./routes');
 
