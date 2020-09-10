@@ -42,4 +42,4 @@ model.Users.belongsToMany(model.Spaces, { through: 'Reservations',  foreignKey: 
 model.Spaces.belongsToMany(model.Users, { through: 'WishList',  foreignKey: 'space_id'});
 model.Users.belongsToMany(model.Spaces, { through: 'WishList',  foreignKey: 'user_id'});
 
-module.exports = { sequelize, model };
+module.exports = { sequelize, ...model };

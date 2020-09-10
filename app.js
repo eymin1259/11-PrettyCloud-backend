@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyparser = require('body-parser');
 const logger = require('morgan')('dev');
+const verifyToken = require('./middlewares/verifyToken');
 
 const router = require('./routes');
 
@@ -10,6 +11,7 @@ app.use(bodyparser.urlencoded({extended: false}));
 app.use(bodyparser.json());
 app.use(cors());
 app.use(logger);
+app.use('/users', verifyToken);
 
 router(app);
 

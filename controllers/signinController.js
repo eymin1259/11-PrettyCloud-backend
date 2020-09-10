@@ -1,5 +1,5 @@
 const { QueryTypes } = require('sequelize');
-const { sequelize } = require('../models/index');
+const { sequelize, Users } = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -7,11 +7,11 @@ const getOneUser = async function(req, res, next) {
   try{
     const { email, password } = req.body;
 
-    let dbUser = {}; 
-    
-    await sequelize.query(`SELECT * FROM users WHERE email="${email}"`, { 
-      type: QueryTypes.SELECT 
-    }).then(queryData => dbUser = queryData[0]);
+    const dbUser = await Users.findOne({
+      where: {
+        email: email
+      }
+    }); 
 
     if(!dbUser){
       const error = new Error('LOGIN_FAIL');
@@ -19,8 +19,8 @@ const getOneUser = async function(req, res, next) {
       throw error;
     }
 
-    const dbPw = dbUser.password;
-    const dbId = dbUser.id;
+    const dbPw = dbUser.dataValues.password;
+    const dbId = dbUser.dataValues.id;
 
     const result = await bcrypt.compare(password, dbPw);
     
@@ -33,7 +33,7 @@ const getOneUser = async function(req, res, next) {
     const token = jwt.sign({
       dbId
     }, process.env.JWT_SECRET, {
-      expiresIn: '10s',
+      expiresIn: '10h',
       issuer: 'host'
     })
 
