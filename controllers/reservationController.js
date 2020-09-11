@@ -30,7 +30,7 @@ const getReservation = async function(req, res, next) {
   try {
     const result = await verifyToken(req);
 
-    await sequelize.query(`select s.title, r.start_time, r.end_time, r.people, r.total_fee from (select * from reservations where user_id=${result.dbId}) r, spaces s where s.id = r.space_id `)
+    await sequelize.query(`select s.title, r.start_time, r.end_time, r.people, r.total_fee from (select * from reservations where user_id=${result.dbId}) r, spaces s where s.id = r.space_id`)
     .then(reservations => {
       res.status(201).json({
       message: 'SUCCESS',
