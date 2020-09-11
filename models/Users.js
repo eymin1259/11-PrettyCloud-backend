@@ -29,7 +29,7 @@ module.exports = (sequelize) => {
       freezeTableName: true,
       paranoid: true,
       underscored: true,
-      timestamps: false,
+      timestamps: false
     }
   );
 };

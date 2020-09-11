@@ -10,7 +10,7 @@ module.exports = function (sequelize) {
     }, {
       freezeTableName: true,
       underscored: true,
-      timestamps: true
+      timestamps: false
     }
   );
 };

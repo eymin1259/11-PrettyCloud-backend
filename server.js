@@ -9,7 +9,7 @@ const { sequelize } = require('./models');
     // db connection
     await sequelize.authenticate();
     await sequelize
-      .sync({ force: false, alter: true })
+      .sync({ force: false, alter: false })
       .then(() => console.log('DB SYNCED'));
 
     // server open
